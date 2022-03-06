@@ -1,13 +1,20 @@
 function! Frontmatter()
 
-inoremap :jekyll<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>olayout: post<ESC>otitle : ""<ESC>osubtitle: ""<ESC>:r! date "+date: \%Y-\%m-\%d \%H:\%M:\%S" <ESC>ocategories: []<ESC>oimage: <ESC>o---<Esc>o<ESC>
-
-inoremap :hugo<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>otitle : ""<ESC>osummary: ""<ESC>:r! date "+date: \%Y-\%m-\%d \%H:\%M:\%S" <ESC>ocategories:<ESC>oimage_url: <ESC>o---<Esc>o<ESC>
-
-inoremap :gatsby<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>oslug: ""<ESC>otitle : ""<ESC>odescription: ""<ESC>:r! date "+date: \%Y-\%m-\%d \%H:\%M:\%S" <ESC>ocategories: []<ESC>oimage: <ESC>o---<Esc>o<ESC>
-
-inoremap :hexo<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>otitle : ""<ESC>oexcerpt: ""<ESC>:r! date "+date: \%Y-\%m-\%d \%H:\%M:\%S" <ESC>otags: []<ESC>o---<Esc>o<ESC>
-
-inoremap :markata<c-y> <ESC>dd<ESC>:1<CR>O<ESC>i---<ESC>olayoutKey: blog-post<ESC>otitle : ""<ESC>osubtitle: ""<ESC>:r! date "+date: \%Y-\%m-\%d \%H:\%M:\%S" <ESC>otags: []<ESC>o---<Esc>o<ESC>
+    normal gv"xy
+    let context = getreg("x")
+    let br = "\<esc>o"
+    let nbr = "\<esc>"
+    echom context
+    if context == 'markata'
+        execute "normal! ggO---".br."templateKey: blog-post".br."title:".br."description:".nbr.":pu=strftime('date: %F %T')".br."status: ".br."slug: ".br."tags: []".br."---".nbr."3G$"
+    elseif context == 'jekyll'
+        execute "normal! ggO---".br."layout: post".br."title:".br."subtitle:".nbr.":pu=strftime('date: %F %T')".br."categories: ".br."---".nbr."3G$"
+    elseif context == 'hugo'
+        execute "normal! ggO---".br."title:".br."summary:".nbr.":pu=strftime('date: %F %T')".br."draft: ".br."categories: ".br."---".nbr."2G$"
+    elseif context == 'gatsby'
+        execute "normal! ggO---".br."templateKey: page".br."title:".br."description: ".nbr.":pu=strftime('date: %F %T')".br."published: ".br."category: ".br."---".nbr."3G$"
+    elseif context == 'hexo'
+        execute "normal! ggO---".br."title:".br."excerpt: ".nbr.":pu=strftime('date: %F %T')".br."tags: []".br."---".nbr."2G$"
+    endif
 
 endfunction

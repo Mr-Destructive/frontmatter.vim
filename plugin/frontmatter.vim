@@ -1,10 +1,9 @@
 function! Frontmatter()
 
     normal gv"xy
-    let context = getreg("x")
+    let context = tolower(getreg("x"))
     let br = "\<esc>o"
     let nbr = "\<esc>"
-    echom context
     if context == 'markata'
         execute "normal! ggO---".br."templateKey: blog-post".br."title:".br."description:".nbr.":pu=strftime('date: %F %T')".br."status: ".br."slug: ".br."tags: []".br."---".nbr."3G$"
     elseif context == 'jekyll'

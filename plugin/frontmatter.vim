@@ -1,7 +1,12 @@
+function! Chomp(string)
+    return substitute(a:string, '\n\+$', '', '')
+endfunction
+
 function! Frontmatter()
 
     normal gv"xy
     let context = tolower(getreg("x"))
+    let context = Chomp(context)
     let br = "\<esc>o"
     let nbr = "\<esc>"
     if context == 'markata'

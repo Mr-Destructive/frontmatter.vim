@@ -14,7 +14,6 @@ CONTENTS                                           *frontamattertoc*
 
     1. Usage ................ |FrontmatterUsage|
     2. Mappings ............. |FrontmatterMappings|
-    3. Bugs ............. |FrontmatterBugs|
 
 ====================================================================
 Section 1: Usage                                   *FrontmatterUsage*
@@ -24,7 +23,8 @@ keys like title, date, description, layout and so on.
 
 To automatically write frontmatter keys for a particular SSG, write 
 the name of the SSG (jekyll, gatsby, hugo, markata) and select the 
-text (only the single word SSG name). 
+text with Visual mode(should only contain the SSG name). Any Newline 
+character or whitespaces are trimmed automically.
 Comeback to normal mode by pressing <ESC>
 Simply call the function Frontmatter() in command mode like:
     :call Frontmatter()
@@ -40,12 +40,5 @@ key combination. In this case I have mapped the keys fm to invoke
 the function and generate the frontmatter.
 
     nnoremap fm :call Frontmatter()<cr>
-
-====================================================================
-Section 3: Bugs                                    *FrontmatterBugs*
-
-Currently only Visual Selection works for selecting the SSG name, 
-If you try Visual-Line mode, it doesn't work. So it simply works for 
-visually selected case insenitive word.
 
 ====================================================================

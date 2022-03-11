@@ -1,12 +1,18 @@
 function! Trim(string)
+    return substitute(a:string, '\(^--\)\@<!\s*$//', '', '')
+endfunction
+
+function! Chomp(string)
     return substitute(a:string, '\n\+$', '', '')
 endfunction
 
 function! Frontmatter()
 
     normal gv"xy
-    let context = tolower(getreg("x"))
+    let context = getreg("x")
+    let context = Chomp(context)
     let context = Trim(context)
+    let context = tolower(context)
     let br = "\<esc>o"
     let nbr = "\<esc>"
     if context == 'markata'

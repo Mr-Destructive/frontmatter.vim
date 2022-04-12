@@ -39,3 +39,6 @@ function! Frontmatter()
     endif
 
 endfunction
+
+nnoremap <leader>fm :call Frontmatter()<CR>
+vnoremap <leader>fm :call Frontmatter()<CR>

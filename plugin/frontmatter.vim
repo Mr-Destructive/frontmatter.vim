@@ -36,6 +36,8 @@ function! Frontmatter()
 	execute ":s/hexo//"
         execute "normal! ggO---".br."title:".br."excerpt: ".nbr."tags: []".nbr
 	execute "normal! :pu=strftime('date: %F %T')".br."---".nbr."2G$"
+    else
+      echo "SSG selected is not supported"
     endif
 
 endfunction

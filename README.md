@@ -10,8 +10,18 @@ A simple plugin for writing the front-matter for a given SSG generator name.
 
 ### Example:
 
+![Frontmatter Neovim Preview](https://res.cloudinary.com/techstructive-blog/image/upload/v1657116978/projects/markata-frontmatter_neovim.gif)
+
+#### Vimscript 
+
 ```vimscript
 nnoremap <leader>fm :call Frontmatter()<cr>
+```
+
+#### Lua
+
+```lua
+vim.keymap.set("n", "<leader>fm",  "<cmd>lua require('frontmatter').Frontmatter()<cr>")
 ```
 
 ### Features:

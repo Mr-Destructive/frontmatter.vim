@@ -34,3 +34,35 @@ vim.keymap.set("n", "<leader>fm",  "<cmd>lua require('frontmatter').Frontmatter(
   - Gatsby
 - Automatically sets current date.
 
+### Customization
+
+The `Frontmatter` function can take in two parameters -> (`type_of_customization`, `{list of frontmatter}` )
+1. Type of Customization -> `add` or `list` 
+2.  List of Frontmatter -> A Lua table of strings representing the frontamtter keys
+
+Add a custom keymap in your vimrc, init.vim or init.lua file.
+
+- Add to an already existing frontmatter
+
+  - Vim
+  ```vimscript
+  nnoremap <leader>fm :lua require('frontmatter').Frontmatter("add", {'series', 'image_url'})<CR>
+  ```
+  
+  - Lua
+  ```lua
+  vim.keymap.set('n', '<leader>fm', "<cmd>lua require('frontmatter').Frontmatter('add',{'series', 'image_url'})<cr>")
+  ```
+
+- Create a new set of frontmatter
+
+  - Vim
+  ```vimscript
+  nnoremap <leader>fm :lua require('frontmatter').Frontmatter("list", {'layout', 'status', 'series', 'series_description', 'image_url'})<CR>
+  ```
+  
+  - Lua
+  ```lua
+  vim.keymap.set('n', '<leader>fm', "<cmd>lua require('frontmatter').Frontmatter('list',{'layout', 'status', 'series', 'image_url'})<cr>")
+  ```
+

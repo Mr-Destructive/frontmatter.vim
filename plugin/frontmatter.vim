@@ -42,5 +42,5 @@ function! Frontmatter()
 
 endfunction
 
-nnoremap <leader>fm :call Frontmatter()<CR>
-vnoremap <leader>fm :call Frontmatter()<CR>
+"nnoremap <leader>fm :call Frontmatter()<CR>
+"vnoremap <leader>fm :call Frontmatter()<CR>

@@ -17,7 +17,7 @@ local function get_visual_selection()
   return vim.inspect(lines[1])
 end
 
-function M.Frontmatter()
+function M.Frontmatter(add_or_create, frontmatter_keys)
   local selection = get_visual_selection()
 
   -- seected text is a valid supported SSG
@@ -33,7 +33,6 @@ function M.Frontmatter()
   if found then
   -- adding frontmatter text 
     local frontmatter_text = {"---"}
-
     -- creating a table with specific element values to specific SSG
     if selection == '"markata"' then
       context = {"templateKey", "title", "description", "status", "tags"}
@@ -47,6 +46,20 @@ function M.Frontmatter()
       context = {"title", "excerpt", "tags"}
     else
       context = {""}
+    end
+
+    -- if customized frontmatter keys
+    if vim.inspect(frontmatter_keys) then 
+       if add_or_create  == "list" then
+         for _, v in ipairs(frontmatter_keys) do
+           context = frontmatter_keys
+         end
+         context = frontmatter_keys
+       elseif add_or_create == "add" then
+         for _, v in ipairs(frontmatter_keys) do
+           table.insert(context, v)
+         end
+       end
     end
     for k, v in ipairs(context) do
       table.insert(frontmatter_text, v .. ":")
